@@ -1,0 +1,166 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Taufiq & Amelia Anniversary</title>
+  <style>
+    :root{--accent:#ff6b6b;--bg:#fff8f6;--card:#ffffff}
+    *{box-sizing:border-box}
+    body{margin:0;font-family:Inter,ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto,'Helvetica Neue',Arial;background:linear-gradient(180deg,var(--bg),#fff);color:#222}
+    header{padding:48px 20px;text-align:center}
+    .brand{font-size:28px;font-weight:700;letter-spacing:.4px}
+    .hero{max-width:980px;margin:0 auto;padding:12px;border-radius:20px;background:rgba(255,255,255,0.6);box-shadow:0 6px 30px rgba(0,0,0,0.06);display:grid;grid-template-columns:1fr;gap:18px}
+    .hero-inner{padding:28px;text-align:center}
+    h1{margin:0;font-size:34px}
+    p.lead{margin:8px 0 0;color:#444}
+
+    .countdown{display:flex;gap:12px;justify-content:center;margin-top:18px}
+    .countdown .unit{background:var(--card);padding:12px 18px;border-radius:12px;min-width:74px;text-align:center;box-shadow:0 4px 18px rgba(0,0,0,0.06)}
+    .unit .n{font-size:22px;font-weight:700}
+    .unit .label{font-size:12px;color:#666}
+
+    .content{max-width:980px;margin:28px auto;padding:0 20px}
+    .grid{display:grid;grid-template-columns:1fr 360px;gap:22px}
+    .card{background:var(--card);padding:18px;border-radius:14px;box-shadow:0 6px 20px rgba(0,0,0,0.05)}
+
+    .gallery{display:flex;flex-wrap:wrap;gap:8px}
+    .gallery img{width:calc(50% - 4px);border-radius:10px;object-fit:cover;height:160px;transition:transform .3s ease}
+    .gallery img:hover{transform:scale(1.05)}
+
+    .rsvp input,.rsvp textarea{width:100%;padding:10px;margin-top:8px;border-radius:8px;border:1px solid #e6e6e6}
+    .btn{display:inline-block;padding:10px 16px;border-radius:10px;background:var(--accent);color:white;font-weight:600;border:none;cursor:pointer}
+
+    footer{padding:18px;text-align:center;color:#666;font-size:13px}
+
+    @media(max-width:880px){.grid{grid-template-columns:1fr}.gallery img{width:100%}}
+  </style>
+</head>
+<body>
+  <header>
+    <div class="brand">Anniversary</div>
+  </header>
+
+  <main class="hero" id="hero">
+    <div class="hero-inner">
+      <h1 id="title">Happy Anniversary Taufiq & Amelia</h1>
+      <p class="lead" id="subtitle">Selamat merayakan cinta abadi pada hari istimewa ini 💕</p>
+
+      <div class="countdown" id="countdown">
+        <div class="unit"><div class="n" id="days">--</div><div class="label">Hari</div></div>
+        <div class="unit"><div class="n" id="hours">--</div><div class="label">Jam</div></div>
+        <div class="unit"><div class="n" id="minutes">--</div><div class="label">Menit</div></div>
+        <div class="unit"><div class="n" id="seconds">--</div><div class="label">Detik</div></div>
+      </div>
+
+      <div style="text-align:center;margin-top:18px">
+        <button class="btn" id="openInvite">Lihat Undangan</button>
+      </div>
+    </div>
+  </main>
+
+  <section class="content">
+    <div class="grid">
+      <div>
+        <div class="card">
+          <h3>Gallery Kenangan</h3>
+          <div class="gallery" id="gallery">
+            <img src="https://images.unsplash.com/photo-1606851094789-3d22fbe8b8e5?auto=format&fit=crop&w=800&q=60" alt="foto1">
+            <img src="https://images.unsplash.com/photo-1606741961797-0c3aef05d51a?auto=format&fit=crop&w=800&q=60" alt="foto2">
+            <img src="https://images.unsplash.com/photo-1508214751196-bcfd4ca60f91?auto=format&fit=crop&w=800&q=60" alt="foto3">
+            <img src="https://images.unsplash.com/photo-1529626455594-4ff0802cfb7e?auto=format&fit=crop&w=800&q=60" alt="foto4">
+          </div>
+        </div>
+
+        <div class="card" style="margin-top:18px">
+          <h3>Pesan untuk Taufiq & Amelia</h3>
+          <p id="guestNotes">Tulis pesan hangat untuk mereka — pesan akan tersimpan secara lokal di browser.</p>
+          <textarea id="noteInput" placeholder="Tulis pesanmu..." rows="3"></textarea>
+          <div style="margin-top:8px"><button class="btn" id="saveNote">Simpan Pesan</button></div>
+        </div>
+      </div>
+
+      <aside>
+        <div class="card rsvp">
+          <h3>RSVP</h3>
+          <label>Nama</label>
+          <input id="rname" placeholder="Nama lengkap">
+          <label>Email / WA (opsional)</label>
+          <input id="remail" placeholder="email atau nomor WA">
+          <label>Hadiah / Catatan</label>
+          <textarea id="rnotes" rows="3" placeholder="Jika ingin meninggalkan catatan atau hadiah..."></textarea>
+          <div style="margin-top:10px;text-align:right"><button class="btn" id="submitRsvp">Kirim</button></div>
+          <div id="rsvpMsg" style="margin-top:10px;color:green;display:none">Terima kasih! Kami sudah menerima RSVP-mu.</div>
+        </div>
+
+        <div class="card" style="margin-top:18px">
+          <h4>Detail Acara</h4>
+          <p id="detailDate">Tanggal: 28 Oktober</p>
+          <p id="detailPlace">Tempat: Rumah &amp; Online</p>
+        </div>
+      </aside>
+    </div>
+  </section>
+
+  <footer>
+    <small>Website untuk merayakan Anniversary Taufiq & Amelia — dibuat dengan ❤️</small>
+  </footer>
+
+  <!-- Musik: Nothing's Gonna Change My Love For You -->
+  <audio id="bgMusic" autoplay loop hidden>
+    <source src="https://files.freemusicarchive.org/storage-freemusicarchive-org/music/no_curator/Glenn_Medeiros/Nothings_Gonna_Change_My_Love_For_You.mp3" type="audio/mpeg">
+    Browser Anda tidak mendukung pemutar audio.
+  </audio>
+
+  <script>
+    const eventTitle = 'Happy Anniversary';
+    const coupleName = 'Taufiq & Amelia';
+    const heroMessage = 'Selamat merayakan cinta abadi pada hari istimewa ini 💕';
+    const targetDate = '2025-10-28T00:00:00';
+
+    document.getElementById('title').textContent = eventTitle + ' — ' + coupleName;
+    document.getElementById('subtitle').textContent = heroMessage;
+
+    function updateCountdown(){
+      const now = new Date();
+      const tgt = new Date(targetDate);
+      let diff = Math.max(0, Math.floor((tgt - now)/1000));
+      const days = Math.floor(diff/86400); diff %= 86400;
+      const hours = Math.floor(diff/3600); diff %= 3600;
+      const minutes = Math.floor(diff/60); const seconds = diff%60;
+      document.getElementById('days').textContent = String(days);
+      document.getElementById('hours').textContent = String(hours).padStart(2,'0');
+      document.getElementById('minutes').textContent = String(minutes).padStart(2,'0');
+      document.getElementById('seconds').textContent = String(seconds).padStart(2,'0');
+    }
+    updateCountdown(); setInterval(updateCountdown,1000);
+
+    document.getElementById('submitRsvp').addEventListener('click',()=>{
+      const name = document.getElementById('rname').value.trim();
+      const contact = document.getElementById('remail').value.trim();
+      const note = document.getElementById('rnotes').value.trim();
+      if(!name){alert('Mohon isi nama.');return}
+      const list = JSON.parse(localStorage.getItem('rsvpList')||'[]');
+      list.push({name,contact,note,ts:new Date().toISOString()});
+      localStorage.setItem('rsvpList',JSON.stringify(list));
+      document.getElementById('rsvpMsg').style.display='block';
+      setTimeout(()=>document.getElementById('rsvpMsg').style.display='none',4000);
+      document.getElementById('rname').value='';document.getElementById('remail').value='';document.getElementById('rnotes').value='';
+    });
+
+    document.getElementById('saveNote').addEventListener('click',()=>{
+      const note = document.getElementById('noteInput').value.trim();
+      if(!note){alert('Tulis pesannya dulu.');return}
+      const notes = JSON.parse(localStorage.getItem('guestNotes')||'[]');
+      notes.push({note,ts:new Date().toISOString()});
+      localStorage.setItem('guestNotes',JSON.stringify(notes));
+      document.getElementById('guestNotes').textContent = 'Terima kasih — pesanmu tersimpan.';
+      document.getElementById('noteInput').value='';
+    });
+
+    document.getElementById('openInvite').addEventListener('click',()=>{
+      window.scrollTo({top:document.querySelector('.content').offsetTop,behavior:'smooth'});
+    });
+  </script>
+</body>
+</html>
